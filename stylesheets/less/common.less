@@ -1,0 +1,51 @@
+.margin(@value: auto){
+  margin: @value;
+}
+.padding(@value: 0){
+  padding: @value;
+}
+.borderSolid(@value: #ccc){
+  border:1px solid @value;
+}
+body, ul, li, p, ol, h1,h2,h3,h4,h5,h6{
+  .margin();
+  .padding();
+}
+
+ul,li,ol{
+  list-style: none;
+}
+
+*{
+  line-height: 1;
+}
+.clearfix{
+  overflow: hidden;
+}
+.clearfix::after{
+  content: '';
+  visibility: hidden;
+  display: block;
+  clear: both;
+  height: 0;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.fn-inlineBlock{
+  display: inline-block;
+}
+.fn-clearUl{
+  li{
+    float: left;
+  }
+}
+.fn-relative{
+  position: relative;
+}
+.fn-absolute{
+  position: absolute;
+}

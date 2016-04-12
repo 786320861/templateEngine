@@ -1,0 +1,150 @@
+@import "bootstrap/bootstrap";
+@import "common";
+
+@font-size-middle: 16px;
+html, body {
+  height: 100%;
+  font-family: @font-family-normal;
+  font-size: @font-size-base;
+  color: #333;
+}
+
+.container-fluid {
+  min-height: 200px;
+}
+
+.fn-clTitle {
+  border-bottom: 1px solid @btn-default-border;
+  overflow: visible;
+  position: relative;
+  & .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+}
+
+#showDropdown {
+  padding: 10px;
+  font-size: 18px;
+  color: @brand-warning;
+  cursor: pointer;
+}
+
+#fn-newsList {
+  margin-top: 15px;
+}
+
+.fn-nlAbstract {
+  .borderSolid();
+  .list-group-item {
+    border-width: 0;
+    border-bottom-width: 1px;
+    margin-bottom: 0;
+    &:last-child{
+      margin-bottom: -1px;
+    }
+  }
+  .fn-news-pic {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .fn-newsList-bayI{
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #e0e4e8;
+  }
+  .fn-newsTitle-top{
+    margin-right: 90px;
+  }
+  .fn-newsTitle {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #000;
+    margin-bottom: 8px;
+    cursor: pointer;
+    .label {
+      margin-right: 5px;
+    }
+  }
+  .fn-newsTitle-markInfo {
+    color: #8f8e8e;
+    font-size: @font-size-small;
+    line-height: 1.4;
+    height: 32px;
+    overflow: hidden;
+  }
+  .fn-newsList-bayII{
+    font-size: @font-size-small;
+    color: #b0b0b0;
+    font-family: @font-family-base;
+    .fn-newsTimes{
+      background: rgba(0,0,0,.6);
+      padding: 8px 15px;
+      line-height: 1.6;
+      border-radius: 5px;
+      color: #fff;
+      top: -20px;
+      left: 55px;
+      display: none;
+      .fa-clock-o{
+        margin-right: 5px;
+      }
+      p:first-child{
+        margin-bottom: 5px;
+      }
+    }
+    .fn-timeago:hover{
+      color: #666;
+      cursor: pointer;
+      &+.fn-newsTimes{
+        display: block;
+      }
+    }
+
+  }
+  .fn-newspaper-source{
+    margin-bottom: 6px;
+    .fa{
+      margin-right: 5px;
+    }
+  }
+  .fn-clearUl{
+    li{
+      margin-left: 10px;
+      padding: 4px 0 4px 5px;
+      cursor: pointer;
+      &:hover{
+        color: #31708f;
+
+      }
+    }
+  }
+}
+
+.fn-nlList {
+  .fn-news {
+    cursor: pointer;
+    .borderSolid();
+    .margin(10px 0);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .label{
+      margin-right: 10px;
+    }
+    & > span {
+    }
+  }
+}
+#contentLeft{
+  width: 350px;
+}
