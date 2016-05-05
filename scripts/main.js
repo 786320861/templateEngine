@@ -94,14 +94,35 @@ require(["jquery","dropdown", "multimode"], function($, dropdown){
         '</div>'+
         '</div>' +
         '{#/list}';
-    var template2 = '{#list}<div class="fn-news">' +
+    var template2 = '{#list}' +
+        '<div class="fn-news">' +
         '{#if (flag)}' +
         '<small class="label label-warning">预测</small>' +
         '{#else}' +
         '<small class="label label-default">转载</small>' +
         '{#/if}' +
-        '<span>{title}</span></div>' +
+        '{#list title}' +
+        '<span>{this}</span>' +
+        '{#/list}' +
+        '</div>' +
         '{#/list}';
+    var template3 = "<div class='fn-news'>" +
+        "{#list title}" +
+        "<span>{this}</span>" +
+        "{#/list}" +
+        "<span class='label'>test</span>" +
+        "{#list name}" +
+        "<p>{this}</p>" +
+        "{#/list}" +
+        "<span>测试</span>" +
+        "{#list sex}" +
+        "<p>{this}</p>" +
+        "{#/list}" +
+
+        "{#if (tag)}" +
+        "<small class='label label-warning'>测试</small>" +
+        "{#/if}" +
+        "</div>";
     var data = [
         {
             "region": "",
@@ -125,7 +146,7 @@ require(["jquery","dropdown", "multimode"], function($, dropdown){
             "imagesource": "http://fwimage.cnfanews.com/websiteimg/2016/20160408/38990/u608p4t47d34722f967dt20160408095643.jpg,172140%D%W",
             "createtime": "2016-04-08 10:16:51.620",
             "revision": "即时新闻",
-            "title": "内蒙古一法院庭长疑因抑郁坠亡 曾给领导发自杀短信",
+            "title": "内蒙古一法院庭长疑因抑郁坠亡 曾给领导发自杀短信1",
             "editor": "",
             "page": "中国新闻网",
             "paperdate": 20160408,
@@ -155,7 +176,7 @@ require(["jquery","dropdown", "multimode"], function($, dropdown){
             "imagesource": "",
             "createtime": "2016-04-08 04:12:39.880",
             "revision": "时事政治",
-            "title": "淡定看待评级 坚定向好信心",
+            "title": "内蒙古一法院庭长疑因抑郁坠亡 曾给领导发自杀短信2",
             "editor": "",
             "page": "中国经济网—《经济日报》",
             "paperdate": 20160408,
@@ -185,7 +206,7 @@ require(["jquery","dropdown", "multimode"], function($, dropdown){
             "imagesource": "http://fwimage.cnfanews.com/websiteimg/2016/20160407/43104/420793e7a74b458d9913a501073bb3ec.jpg,77850%D%W",
             "createtime": "2016-04-07 09:03:51.533",
             "revision": "社会法制",
-            "title": "姐姐热恋海归男不料妹妹来夺爱 3人结局出人意料",
+            "title": "内蒙古一法院庭长疑因抑郁坠亡 曾给领导发自杀短信3",
             "editor": "",
             "page": "广西新闻网-当代生活报",
             "paperdate": 20160407,
@@ -215,7 +236,7 @@ require(["jquery","dropdown", "multimode"], function($, dropdown){
             "imagesource": "l_36454_A04J20160407C_2.jpg,10527%D%Wl_36454_A04J20160407C_1.jpg,10372%D%W",
             "createtime": "2016-04-07 05:09:52.483",
             "revision": "A04",
-            "title": "南京一女子1分钟内被骗走334万",
+            "title": "内蒙古一法院庭长疑因抑郁坠亡 曾给领导发自杀短信4",
             "editor": "",
             "page": "重点新闻",
             "paperdate": 20160407,
@@ -224,6 +245,7 @@ require(["jquery","dropdown", "multimode"], function($, dropdown){
             "papername": "金陵晚报"
         }
     ];
+    var data2 = {title: [1,2,3,4], name: ["s","q","q","q"],sex: [0,1,0,1],tag: true};
     $("#modeSwitch li").click(function(){
         var $this = $(this),
             index =$this.index(),
@@ -244,5 +266,5 @@ require(["jquery","dropdown", "multimode"], function($, dropdown){
             }
         }
         $("#fn-newsList").multiMode(opts);
-    }).eq(1).trigger("click");
+    }).eq(0).trigger("click");
 });

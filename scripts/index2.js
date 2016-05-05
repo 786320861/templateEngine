@@ -15,7 +15,7 @@ require.config({
 require(["jquery","dropdown", "template"], function($, dropdown){
     //$("#showDropdown").dropdown();
     var template = '<div class="list-group-item fn-list-news-box waves-effect waves-custom nt">'+
-        '<div class="fn-newsList-bayI clearfix fn-title-container">'+
+        '<span class="fa fa-square-o fn-checkbox"></span><div class="fn-newsList-bayI clearfix fn-title-container">'+
         '<div class="fn-news-pic pull-right">'+
         '<img src="../image/test.jpg" alt="ͼƬû�ҵ�">'+
         '</div>'+

@@ -1,15 +1,15 @@
 /**
  * Created by sq on 2016/4/7.
- * æ”¯æŒlist ifè¯­å¥ï¼Œä¸æ”¯æŒåµŒå¥—ä½¿ç”¨
- * listè¯­å¥ä¼ å…¥çš„æ˜¯array å¯¹è±¡ï¼Œå…¶ä»–çš„ä¼ å…¥çš„æ˜¯objå¯¹è±¡
+ * Ö§³Ölist ifÓï¾ä£¬²»Ö§³ÖÇ¶Ì×Ê¹ÓÃ
+ * listÓï¾ä´«ÈëµÄÊÇarray ¶ÔÏó£¬ÆäËûµÄ´«ÈëµÄÊÇobj¶ÔÏó
  */
-define(['jquery'], function ($) {
+(function ($) {
     $.fn.multiMode = function (options) {
         var _default = {
-            "template": "",       //å¿…é¡»ä¼ é€’
-            "_class": "",         //é»˜è®¤ä¸ºfn+mode
-            "removeClass": "",    //éœ€è¦ç§»é™¤çš„class
-            "data": [],           //è§£æžçš„æ•°æ®å€¼
+            "template": "",       //±ØÐë´«µÝ
+            "_class": "",         //Ä¬ÈÏÎªfn+mode
+            "removeClass": "",    //ÐèÒªÒÆ³ýµÄclass
+            "data": [],           //½âÎöµÄÊý¾ÝÖµ
             "beforeInit": null,
             "afterInit": null
         };
@@ -38,7 +38,7 @@ define(['jquery'], function ($) {
          return "";
          }
          }*/
-        //è¿”å›žä¸€ä¸ªæ‹¼æŽ¥å¥½çš„htmlç‰‡æ®µ
+        //·µ»ØÒ»¸öÆ´½ÓºÃµÄhtmlÆ¬¶Î
         MultiMode.prototype.innerListOp = function (data, template) {
             var code = "var r = []; \n",
                 html = "";
@@ -46,7 +46,7 @@ define(['jquery'], function ($) {
                 match = null,
                 cursor = 0, i = 0;
             template = template.replace(/\"/g,"'");
-            //å½“æ—¶ifæˆ–è€…elseifæ—¶ï¼Œ
+            //µ±Ê±if»òÕßelseifÊ±£¬
             function ifCase(str) {
                 var ifReg = /\([^\)]+\)/;
                 var m = str.match(ifReg),
@@ -94,7 +94,7 @@ define(['jquery'], function ($) {
                     innerTemp = template.substring(innerMatch.index, innerEnd + 8),
                     filed = $.trim(innerMatch[1]);
                 html = this.splitTemplate(innerTemp, data, filed);
-                template = template.substring(0,innerMatch.index) + html.replace(/\n|\r|\t/g,"") + template.substring(innerEnd+8);  //æ”¹å˜æ¨¡æ¿
+                template = template.substring(0,innerMatch.index) + html.replace(/\n|\r|\t/g,"") + template.substring(innerEnd+8);  //¸Ä±äÄ£°å
             }
             while (match = reg.exec(template)) {
                 //console.log(template);
@@ -121,7 +121,7 @@ define(['jquery'], function ($) {
                             code += "{\n";
                     }
                 } else if (m1 == "this") {
-                   // console.log(data);
+                    // console.log(data);
                     code += "r.push(\"" + data + "\");\n";
                 } else {
                     code += "r.push(\"" + data[m1] + "\");";
@@ -134,7 +134,7 @@ define(['jquery'], function ($) {
             html = fun();
             return html;
         };
-        //å‡è®¾è¿›æ¥çš„æ¨¡æ¿éƒ½æ˜¯#listå’Œ#/listæˆå¯¹å‡ºçŽ°çš„ï¼Œè¿”å›žçš„æ˜¯ä¸€ä¸ªhtmlå­—ç¬¦ä¸²ç‰‡æ®µ
+        //¼ÙÉè½øÀ´µÄÄ£°å¶¼ÊÇ#listºÍ#/list³É¶Ô³öÏÖµÄ£¬·µ»ØµÄÊÇÒ»¸öhtml×Ö·û´®Æ¬¶Î
         MultiMode.prototype.checkHorizontalList = function(template, data){
             var code = "";
             var regList = /(\{#list(\s+\w*)\}|\{#list\})[^#]+\{\#\/list}/g;
@@ -165,7 +165,7 @@ define(['jquery'], function ($) {
             }
             return code;
         };
-        //åˆ¤æ–­æ˜¯å¦æœ‰listå¾ªçŽ¯æ“ä½œ
+        //ÅÐ¶ÏÊÇ·ñÓÐlistÑ­»·²Ù×÷
         MultiMode.prototype.splitTemplate = function (template, data, filed) {
             var regList = /\{#list(\s+\w*)\}|\{#list\}/g,
                 startMatch = null,
@@ -174,11 +174,11 @@ define(['jquery'], function ($) {
             var lastMatchIndex = template.lastIndexOf("{#/list}");
             var innerTemp = startMatch ? template.substring(startMatch.index + startMatch[0].length, lastMatchIndex) : template;
             code += template.substring(0, startMatch.index);
-            //åˆ¤æ–­ä¸­é—´æ˜¯å¦æœ‰{#list}
+            //ÅÐ¶ÏÖÐ¼äÊÇ·ñÓÐ{#list}
             if(innerTemp.indexOf("{#list")>=0){
                 var innerMatch = regList.exec(innerTemp),
                     innerEndIndex = innerTemp.indexOf("{#/list}");
-                //å¹¶åˆ—çš„å¾ªçŽ¯
+                //²¢ÁÐµÄÑ­»·
                 if(innerMatch.index > innerEndIndex){
                     innerTemp = startMatch[0] + innerTemp + "{#/list}";
                     code += _this.checkHorizontalList(innerTemp, data, innerMatch, innerEndIndex);
@@ -219,4 +219,4 @@ define(['jquery'], function ($) {
         var exe = new MultiMode();
         exe.init();
     }
-});
+})(jQuery);
